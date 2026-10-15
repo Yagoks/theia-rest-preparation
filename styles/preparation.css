@@ -21,16 +21,22 @@
 .theia-prep .tp-hero p { margin: 2px 0 0; opacity: 0.8; }
 
 /* Toolbar */
-.theia-prep .tp-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--tp-line); }
+.theia-prep .tp-toolbar { display: flex; align-items: center; gap: 10px; padding: 10px 16px 8px; }
 .theia-prep .tp-search { flex: 1 1 180px; position: relative; display: flex; align-items: center; }
 .theia-prep .tp-search i { position: absolute; left: 9px; opacity: 0.55; pointer-events: none; }
 .theia-prep .tp-search input { width: 100%; padding-left: 28px; height: 30px; border-radius: 15px; }
-.theia-prep .tp-chips { display: flex; gap: 4px; }
-.theia-prep .tp-chip {
-  min-width: 30px; height: 26px; line-height: 24px; padding: 0 8px; border-radius: 13px; font-size: 0.85em;
-  border: 1px solid var(--tp-line); background: transparent;
+/* Level filter: one segmented bar, equal segments (fits All + 9 levels) */
+.theia-prep .tp-chips {
+  display: flex; margin: 0 16px 10px; border: 1px solid var(--tp-line); border-radius: 8px; overflow: hidden;
 }
-.theia-prep .tp-chip.active { background: var(--tp-accent); border-color: var(--tp-accent); color: #1b1408; font-weight: bold; }
+.theia-prep .tp-chip {
+  flex: 1 1 0; min-width: 0; height: 28px; line-height: 26px; padding: 0; margin: 0; font-size: 0.85em;
+  border: none; border-left: 1px solid var(--tp-line); border-radius: 0; background: transparent;
+}
+.theia-prep .tp-chip:first-child { border-left: none; flex-grow: 1.4; }
+.theia-prep .tp-chip:hover { background: rgba(128, 128, 128, 0.14); }
+.theia-prep .tp-chip.active { background: var(--tp-accent); color: #1b1408; font-weight: bold; }
+.theia-prep .tp-chips + .tp-list { border-top: 1px solid var(--tp-line); }
 .theia-prep .tp-toggle { display: flex; align-items: center; gap: 4px; font-size: 0.85em; white-space: nowrap; }
 
 /* List */

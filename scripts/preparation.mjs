@@ -133,7 +133,7 @@ class PreparationApp extends ApplicationV2 {
   async _renderHTML() {
     const maxLevel = Math.max(0, ...this.groups.map(g => g.maxLevel));
     const chips = [0, ...Array.from({ length: maxLevel }, (_, i) => i + 1)].map(l =>
-      `<button type="button" class="tp-chip ${this.level === l ? "active" : ""}" data-level-filter="${l}">${l ? l : "All"}</button>`).join("");
+      `<button type="button" class="tp-chip ${this.level === l ? "active" : ""}" data-level-filter="${l}" data-tooltip="${l ? `${ordinal(l)} level` : "All levels"}">${l ? l : "All"}</button>`).join("");
     const root = document.createElement("div");
     root.className = "tp-root";
     root.innerHTML = `
@@ -145,9 +145,9 @@ class PreparationApp extends ApplicationV2 {
       </div>
       <div class="tp-toolbar">
         <label class="tp-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" placeholder="Search spells" value="${esc(this.query)}"></label>
-        <div class="tp-chips">${chips}</div>
         <label class="tp-toggle"><input type="checkbox" class="tp-only" ${this.onlyPrepared ? "checked" : ""}> Prepared only</label>
       </div>
+      ${maxLevel > 1 ? `<div class="tp-chips" role="group" aria-label="Spell level">${chips}</div>` : ""}
       <div class="tp-list">${this.groups.map(g => this._groupHTML(g)).join("")}</div>
       <p class="tp-note"><i class="fa-solid fa-circle-info"></i> Cantrips, always-prepared and innate spells don't change. Unchecked spells stay on the sheet.</p>
       <p class="tp-error" role="alert"></p>
